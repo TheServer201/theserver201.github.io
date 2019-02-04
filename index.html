@@ -126,7 +126,7 @@ fn num(Vec<char> digits) -> u64 {
     let value = 0;
     for digit in digits {
         value *= 10;
-        value += digit - '0' as u64;
+        value += digit - '0';
     }
     value
 }
