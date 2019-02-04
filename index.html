@@ -2,20 +2,19 @@
 **Limus**
 A modern langage and optimizing compiler.
 
-The name means mud, slime or muck in Latin and refer to [Physarum polycephalum](https://en.wikipedia.org/wiki/Physarum_polycephalum) a
-slime mold able to solve optimization problems.
+The name means mud, slime or muck in Latin and refer to [Physarum polycephalum](https://en.wikipedia.org/wiki/Physarum_polycephalum) a slime mold able to solve optimization problems.
 
 ## Langage
 ### Ideas
 - The assume keyword allow the programmer to express it's own knowledge
-```rust
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn main(Vec<str> args) {
     assume!(args.len() != 0); // The first argument is always the program name
     println!("{}", args[0]); // This will not be bound checked !
 }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Access the parity, carry and overflow flags without assembly
-```rust
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 use std::rand;
 
 fn main() {
@@ -27,16 +26,16 @@ fn main() {
     sum += rng.gen(); // sum is now an u256
     println!("{}{}", carry(sum) ? "c" : "", sum);
 }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Native support for fixed-point
-```rust
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn main() {
     let num: q0d8 = 0.5;
     println!("{:#b}", num); // "0b00001111"
 }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - What you use is what you get (WYUIWYG)
-```rust
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn main(Vec<str> args) {
     println!("{:?}", args);
 }
@@ -45,8 +44,8 @@ fn main(Vec<str> args) {
 fn main() {
     println!("Hello, world!");
 }
-```
-```rust
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn main() {
     let array = Vec::new();
     array.push(0);
@@ -57,7 +56,7 @@ fn main() {
     array[10] = 2; // skip a range in the ring buffer
     array[10000] = 3; // array now contains a ring buffer and a linked list
 }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Compiler
 ## Lex, Parse and Syntax Tree
@@ -95,7 +94,7 @@ Num &larr; [0-9]+ > num
 
 **Code**
 
-```rust
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn expr(left: u64, right: Option<Vec<(char, u64)>>) -> u64 {
     if let Some(right_inner) = right {
         for tuple in right_inner {
@@ -132,7 +131,7 @@ fn num(Vec<char> digits) -> u64 {
     }
     value
 }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #### Advantages
 
