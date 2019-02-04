@@ -20,11 +20,11 @@ use std::rand;
 fn main() {
     let rng: Rng<u64> = Rng::new();
     let sum = rng.gen();
-    assume!(propagate_carry(sum));
+    assume!(propagate_carry!(sum));
     sum += rng.gen();
     sum += rng.gen();
     sum += rng.gen(); // sum is now an u256
-    println!("{}{}", carry(sum) ? "c" : "", sum);
+    println!("{}{}", carry!(sum) ? "c" : "", sum);
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Native support for fixed-point
