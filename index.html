@@ -24,7 +24,7 @@ fn main() {
     sum += rng.gen();
     sum += rng.gen();
     sum += rng.gen(); // sum is now an u256
-    println!("{}{}", carry!(sum) ? "c" : "", sum);
+    println!("{}{}", carry!(sum) ? '1' : '0', sum);
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Native support for fixed-point
