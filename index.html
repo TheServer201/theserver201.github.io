@@ -91,7 +91,7 @@ Value <- Num / '(' Expr ')'
 Num <- [0-9]+ > num
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Code**
+**Implementation**
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn expr(left: u64, right: Option<Vec<(char, u64)>>) -> u64 {
