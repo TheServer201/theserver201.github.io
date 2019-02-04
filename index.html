@@ -72,7 +72,7 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 |Optional|$e? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option<typeOf($e$)>|
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
-|If-then-else<sup>2</sup>|$N \leftarrow e\ ?\ e_1\ :\ e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
+|If-then-else<sup>2</sup>|$e\ ?\ e_1\ :\ e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
 |Redirect|$e$ > func|Call func when $e$ match|returnTypeOf(func)|
 
 1. Most of the idea come from the [Oak Parser](http://hyc.io/oak/typing-expression.html).
