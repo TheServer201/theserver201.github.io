@@ -84,10 +84,12 @@ Calculator that recognize the basic four operations to non-negative integers wit
 
 **Grammar**
 
-Expr <- Product (('+' / '-') Product)* > expr<br>
-Product <- Value (('\*' / '/') Value)* > product<br>
-Value <- Num / '(' Expr ')'<br>
-Num <- [0-9]+ > num<br>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ none linenumbers
+Expr <- Product (('+' / '-') Product)* > expr
+Product <- Value (('*' / '/') Value)* > product
+Value <- Num / '(' Expr ')'
+Num <- [0-9]+ > num
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Code**
 
