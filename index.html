@@ -85,7 +85,7 @@ Calculator that recognize the basic four operations to non-negative integers wit
 **Grammar**
 
 Expr <- Product (('+' / '-') Product)* > expr<br/>
-Product <- Value (('*' / '/') Value)* > product<br/>
+Product <- Value (('&ast;' / '/') Value)* > product<br/>
 Value <- Num / '(' Expr ')'<br/>
 Num <- [0-9]+ > num<br/>
 
