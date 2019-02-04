@@ -64,15 +64,15 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 #### Syntax
 |Operators|Syntax|Semantic|Type<sup>1</sup>|
 |---|---|---|---|
-|Nothing|&epsilon;|Match nothing|unit|
+|Nothing|$\epsilon$|Match nothing|unit|
 |Sequence|e<sub>1</sub> e<sub>2</sub>|Match e<sub>1</sub> then e<sub>2</sub>|(type_of(e<sub>1</sub>), type_of(e<sub>2</sub>))|
-|Ordered choice|N <- e<sub>1</sub> / e<sub>2</sub>|Match e<sub>1</sub> first or e<sub>2</sub> then|shared_type_of(e<sub>1</sub>, e<sub>2</sub>)|
-|Zero-or-more|e* <=> N <- e N / &epsilon;|Match e zero or more time(s)|Option<Vec<type_of(e)>>|
+|Ordered choice|$\mathbb{N}$ <- e<sub>1</sub> / e<sub>2</sub>|Match e<sub>1</sub> first or e<sub>2</sub> then|shared_type_of(e<sub>1</sub>, e<sub>2</sub>)|
+|Zero-or-more|e* <=> $\mathbb{N}$ <- e $\mathbb{N}$ / $\epsilon$|Match e zero or more time(s)|Option<Vec<type_of(e)>>|
 |One-or-more|e+ <=> ee*|Match e once or more time(s)|Vec<type_of(e)>|
 |Optional|e? <=> e / &epsilon;|Match e if possible|Option<type_of(e)>|
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
-|If-then-else<sup>2</sup>|N <- e ? e<sub>1</sub> : e<sub>2</sub> <=> (e e<sub>1</sub>) / (!e e<sub>2</sub>)|Match e<sub>1</sub> if e succeed else e<sub>2</sub>|(bool, shared_type_of(e<sub>1</sub>, e<sub>2</sub>))|
+|If-then-else<sup>2</sup>|$\mathbb{N}$ <- e ? e<sub>1</sub> : e<sub>2</sub> <=> (e e<sub>1</sub>) / (!e e<sub>2</sub>)|Match e<sub>1</sub> if e succeed else e<sub>2</sub>|(bool, shared_type_of(e<sub>1</sub>, e<sub>2</sub>))|
 |Redirect|e > func|Call func when e match|return_type_of(func)|
 
 1. Most of the idea come from the [Oak Parser](http://hyc.io/oak/typing-expression.html).
