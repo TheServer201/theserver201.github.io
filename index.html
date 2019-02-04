@@ -64,15 +64,15 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 #### Syntax
 |Operators|Syntax|Semantic|Type<sup>1</sup>|
 |---|---|---|---|
-|Nothing|$\epsilon$|Match nothing|unit|
+|Nothing|$\epsilon$|Match nothing once|unit|
 |Sequence|$e_1\ e_2$|Match $e_1$ then $e_2$|(typeOf($e_1$), typeOf($e_2$))|
-|Ordered choice|$N \leftarrow e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
+|Ordered choice|$e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
 |Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option<Vec<typeOf($e$)>>|
 |One-or-more|$e^+ \Leftrightarrow ee^*$|Match $e$ once or more time(s)|Vec<typeOf($e$)>|
-|Optional|$e^? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option<typeOf($e$)>|
+|Optional|$e? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option<typeOf($e$)>|
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
-|If-then-else<sup>2</sup>|$N \leftarrow e ? e_1 : e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
+|If-then-else<sup>2</sup>|$N \leftarrow e\ ?\ e_1\ :\ e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
 |Redirect|$e$ > func|Call func when $e$ match|returnTypeOf(func)|
 
 1. Most of the idea come from the [Oak Parser](http://hyc.io/oak/typing-expression.html).
