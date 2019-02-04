@@ -68,12 +68,12 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 |Sequence|$e_1\ e_2$|Match $e_1$ then $e_2$|(typeOf($e_1$), typeOf($e_2$))|
 |Ordered choice|$N \leftarrow e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
 |Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option<Vec<typeOf($e$)>>|
-|One-or-more|e+ <==> ee*|Match e once or more time(s)|Vec<type_of(e)>|
-|Optional|e? <==> e / &epsilon;|Match e if possible|Option<type_of(e)>|
+|One-or-more|$e^+ \Leftrightarrow ee^*$|Match $e$ once or more time(s)|Vec<typeOf($e$)>|
+|Optional|$e^? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option<typeOf($e$)>|
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
-|If-then-else<sup>2</sup>|$\mathbb{N}$ <- e ? e<sub>1</sub> : e<sub>2</sub> <==> (e e<sub>1</sub>) / (!e e<sub>2</sub>)|Match e<sub>1</sub> if e succeed else e<sub>2</sub>|(bool, shared_type_of(e<sub>1</sub>, e<sub>2</sub>))|
-|Redirect|e > func|Call func when e match|return_type_of(func)|
+|If-then-else<sup>2</sup>|$N \leftarrow e ? e_1 : e_2 \Leftrightarrow (e e_1) / (!e e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
+|Redirect|$e$ > func|Call func when $e$ match|returnTypeOf(func)|
 
 1. Most of the idea come from the [Oak Parser](http://hyc.io/oak/typing-expression.html).
 2. The paper below describe a more general operator (also defined on recursion) that help to reduce the backtracking activity but is harder to write with.  
