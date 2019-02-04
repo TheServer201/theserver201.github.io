@@ -66,8 +66,8 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 |---|---|---|---|
 |Nothing|$\epsilon$|Match nothing|unit|
 |Sequence|$e_1\ e_2$|Match $e_1$ then $e_2$|(typeOf($e_1$), typeOf($e_2$))|
-|Ordered choice|$\mathbb{N} \leftarrow e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
-|Zero-or-more|$e^* \Leftrightarrow \mathbb{N} \leftarrow e \mathbb{N} / \epsilon$|Match $e$ zero or more time(s)|Option<Vec<typeOf($e$)>>|
+|Ordered choice|$N \leftarrow e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
+|Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option<Vec<typeOf($e$)>>|
 |One-or-more|e+ <==> ee*|Match e once or more time(s)|Vec<type_of(e)>|
 |Optional|e? <==> e / &epsilon;|Match e if possible|Option<type_of(e)>|
 |And-predicate|&e|Look ahead if e match|unit|
