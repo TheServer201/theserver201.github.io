@@ -83,17 +83,6 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 #### Example
 Calculator that recognize the basic four operations to non-negative integers with precedence handling.
 
-**Grammar**
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ none linenumbers
-Expr <- Product (('+' / '-') Product)* > expr
-Product <- Value (('*' / '/') Value)* > product
-Value <- Num / '(' Expr ')'
-Num <- [0-9]+ > num
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Implementation**
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn expr(left: u64, right: Option<Vec<(char, u64)>>) -> u64 {
     if let Some(right_inner) = right {
@@ -130,6 +119,17 @@ fn num(Vec<char> digits) -> u64 {
         value += digit - '0';
     }
     value
+}
+
+fn main() {
+    // In Limus procedural macros return raw str so we can use (\r)\n to separate the rules
+    let stree = parse!{
+        Expr: Product (('+' / '-') Product)* > expr
+        Product: Value (('*' / '/') Value)* > product
+        Value: Num / '(' Expr ')'
+        Num: [0-9]+ > num
+    };
+    println!("{}", stree::from_str("3*(2+1)"));
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
