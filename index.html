@@ -1,5 +1,4 @@
 <meta charset="utf-8" lang="en">
-<script type="preformatted">
 **Limus**
 A modern langage and optimizing compiler.
 
@@ -68,7 +67,7 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 |Nothing|$\epsilon$|Match nothing once|unit|
 |Sequence|$e_1\ e_2$|Match $e_1$ then $e_2$|(typeOf($e_1$), typeOf($e_2$))|
 |Ordered choice|$e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
-|Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option`<`Vec`<`typeOf($e$)`>>`|
+|Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option&lt;Vec&lt;typeOf($e$)`>>`|
 |One-or-more|$e^+ \Leftrightarrow ee^*$|Match $e$ once or more time(s)|Vec`<`typeOf($e$)`>`|
 |Optional|$e? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option`<`typeOf($e$)`>`|
 |And-predicate|&e|Look ahead if e match|unit|
@@ -84,6 +83,7 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 #### Example
 Calculator that recognize the basic four operations to non-negative integers with precedence handling.
 
+<script type="preformatted">
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn expr(left: u64, right: Option<Vec<(char, u64)>>) -> u64 {
     if let Some(right_inner) = right {
@@ -133,6 +133,7 @@ fn main() {
     println!("{}", stree::from_str("3*(2+1)"));
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
 
 *****************************************
 * .-------------------------------.     *
@@ -148,7 +149,6 @@ fn main() {
 *****************************************
 
 #### Advantages
-</script>
 
 <!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/atom-one-light.min.css" rel="stylesheet">
