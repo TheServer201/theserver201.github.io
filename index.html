@@ -83,6 +83,7 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 #### Example
 Calculator that recognize the basic four operations to non-negative integers with precedence handling.
 
+<script type="preformatted">
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn expr(left: u64, right: Option<Vec<(char, u64)>>) -> u64 {
     if let Some(right_inner) = right {
@@ -132,6 +133,7 @@ fn main() {
     println!("{}", stree::from_str("3*(2+1)"));
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
 
 *****************************************
 * .-------------------------------.     *
