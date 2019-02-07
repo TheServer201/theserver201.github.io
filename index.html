@@ -7,13 +7,16 @@ The name means mud, slime or muck in Latin and refer to [Physarum polycephalum](
 # Langage
 ## Ideas
 - The assume keyword allow the programmer to express it's own knowledge
+<script type="preformatted">
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn main(Vec<str> args) {
     assume!(args.len() != 0); // The first argument is always the program name
     println!("{}", args[0]); // This will not be bound checked !
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
 - Access the parity, carry and overflow flags without assembly
+<script type="preformatted">
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 use std::rand;
 
@@ -27,14 +30,18 @@ fn main() {
     println!("{}{}", carry!(sum) ? '1' : '0', sum);
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
 - Native support for fixed-point
+<script type="preformatted">
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn main() {
     let num: uq0d8 = 0.5;
     println!("{:#b}", num); // "0b00001111"
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
 - What you use is what you get (WYUIWYG)
+<script type="preformatted">
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
 fn main(Vec<str> args) {
     println!("{:?}", args);
@@ -54,6 +61,7 @@ fn main() {
     array[10000] = 3; // array now contains a ring buffer and a linked list
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
 
 # Compiler
 ## Lex, Parse and Syntax Tree
@@ -67,9 +75,9 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 |Nothing|$\epsilon$|Match nothing once|unit|
 |Sequence|$e_1\ e_2$|Match $e_1$ then $e_2$|(typeOf($e_1$), typeOf($e_2$))|
 |Ordered choice|$e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
-|Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|`Option<Vec<typeOf($e$)>>`|
-|One-or-more|$e^+ \Leftrightarrow ee^*$|Match $e$ once or more time(s)|Vec`&lt;`typeOf($e$)`&gt;`|
-|Optional|$e? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option`&lt;`typeOf($e$)`&gt;`|
+|Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option`<`Vec`<`typeOf($e$)`>>`|
+|One-or-more|$e^+ \Leftrightarrow ee^*$|Match $e$ once or more time(s)|Vec`<`typeOf($e$)`>`|
+|Optional|$e? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option`<`typeOf($e$)`>`|
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
 |If-then-else<sup>2</sup>|$e\ ?\ e_1 : e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
