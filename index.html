@@ -62,18 +62,20 @@ fn main() {
 Parsing expression grammar, or PEG, is a type of analytic formal grammar syntactically similar to [Extended Backus-Naur form](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) and [Regular Expression](https://en.wikipedia.org/wiki/Regular_expression). It was introduced by Bryan Ford in 2004 and is closely related to the family of [top-down parsing](https://en.wikipedia.org/wiki/Top-down_parsing) languages introduced in the early 1970s.
 
 #### Syntax
+<script type="preformatted">
 |Operators|Syntax|Semantic|Type<sup>1</sup>|
 |---|---|---|---|
 |Nothing|$\epsilon$|Match nothing once|unit|
 |Sequence|$e_1\ e_2$|Match $e_1$ then $e_2$|(typeOf($e_1$), typeOf($e_2$))|
 |Ordered choice|$e_1 / e_2$|Match $e_1$ first or $e_2$ then|sharedTypeOf($e_1$, $e_2$)|
-|Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option&#60;Vec&#60;typeOf($e$)`>>`|
+|Zero-or-more|$e^* \Leftrightarrow N \leftarrow e N / \epsilon$|Match $e$ zero or more time(s)|Option`<`Vec`<`typeOf($e$)`>>`|
 |One-or-more|$e^+ \Leftrightarrow ee^*$|Match $e$ once or more time(s)|Vec`<`typeOf($e$)`>`|
 |Optional|$e? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option`<`typeOf($e$)`>`|
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
 |If-then-else<sup>2</sup>|$e\ ?\ e_1 : e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
 |Redirect|$e$ > func|Call func when $e$ match|returnTypeOf(func)|
+</script>
 
 1. Most of the idea come from the [Oak Parser](http://hyc.io/oak/typing-expression.html).
 2. The paper below describe a more general operator (also defined on recursion) that help to reduce the backtracking activity but is harder to write with.
