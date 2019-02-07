@@ -70,7 +70,7 @@ fn main() {
 Parsing expression grammar, or PEG, is a type of analytic formal grammar syntactically similar to [Extended Backus-Naur form](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) and [Regular Expression](https://en.wikipedia.org/wiki/Regular_expression). It was introduced by Bryan Ford in 2004 and is closely related to the family of [top-down parsing](https://en.wikipedia.org/wiki/Top-down_parsing) languages introduced in the early 1970s.
 
 #### Syntax
-|Operators|Syntax|Semantic|Type[#Hutton1996]|
+|Operators|Syntax|Semantic|Type [#Hutton1996]|
 |---|---|---|---|
 |Nothing|$\epsilon$|Match nothing once|unit|
 |Sequence|$e_1\ e_2$|Match $e_1$ then $e_2$|(typeOf($e_1$), typeOf($e_2$))|
@@ -80,7 +80,7 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 |Optional|$e? \Leftrightarrow e / \epsilon$|Match $e$ if possible|Option`<`typeOf($e$)`>`|
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
-|If-then-else[#Mizushima2010]|$e\ ?\ e_1 : e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
+|If-then-else [#Mizushima2010]|$e\ ?\ e_1 : e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
 |Redirect|$e$ > func|Call func when $e$ match|returnTypeOf(func)|
 
 1. Most of the idea come from the [Oak Parser](http://hyc.io/oak/typing-expression.html).
