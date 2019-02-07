@@ -120,12 +120,7 @@ fn product(left: u64, right: Option<Vec<(char, u64)>>) -> u64 {
 
 // We could have used parse but since we know that digits always contains valid digit(s)
 fn num(Vec<char> digits) -> u64 {
-    let value = 0;
-    for digit in digits {
-        value *= 10;
-        value += digit - '0';
-    }
-    value
+    digits.iter().fold(0, |value, digit| value * 10 + digit - '0')
 }
 
 fn main() {
