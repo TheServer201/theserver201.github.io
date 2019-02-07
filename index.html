@@ -81,12 +81,10 @@ Parsing expression grammar, or PEG, is a type of analytic formal grammar syntact
 |And-predicate|&e|Look ahead if e match|unit|
 |Not-predicate|!e|Look ahead if e doesn't match|unit|
 |If-then-else [#Mizushima2010]|$e\ ?\ e_1 : e_2 \Leftrightarrow (e\ e_1) / (!e\ e_2)$|Match $e_1$ if $e$ succeed else $e_2$|(bool, sharedTypeOf($e_1$, $e_2$))|
-|Redirect|$e$ > func|Call func when $e$ match|returnTypeOf(func)|
+|Redirect|$e$ > func|Call func when $e$ match|returnTypeOf(func)|  
 
-1. Most of the idea come from the [Oak Parser](http://hyc.io/oak/typing-expression.html).
-2. The paper below describe a more general operator (also defined on recursion) that help to reduce the backtracking activity but is harder to write with.
-
-    
+!!! note
+    The paper describe the Cut operator a generalization of the If-then-else operator.
 
 #### Example
 Calculator that recognize the basic four operations to non-negative integers with precedence handling.
