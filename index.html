@@ -149,6 +149,71 @@ fn main() {
 * '-------------------------------'     *
 *****************************************
 
+#### Implementation
+<script type="preformatted">
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
+use std::mem::size_of;
+
+#[inline]
+fn sizeOf<T>() -> usize {
+    size_of::<T>() * 8
+}
+
+#[derive(Clone)]
+struct Bucket<V> {
+    key: usize,
+    value: V,
+}
+
+impl<V> Bucket<V> {
+    fn new(key: usize, value: V) -> Bucket<V> {
+        Bucket {
+            key: key,
+            value: value,
+        }
+    }
+}
+
+struct HashMap<V> {
+    array: Vec<Option<Bucket<V>>>,
+    shift: usize,
+}
+
+impl<V: Clone> HashMap<V> {
+    fn new(width: usize, height: usize) -> HashMap<V> {
+        assert!(width != 0 && height != 0);
+        HashMap {
+            array: vec![None; width * height],
+            shift: sizeOf::<usize>() - height.leading_zeros() as usize - 1,
+        }
+    }
+
+    fn entry(&self, position: usize, symbol: usize) -> (usize, usize) {
+        let key = (position << self.shift) | symbol;
+        let length = self.array.len();
+        let index = (key * length) >> (sizeOf::<usize>() / 2);
+        (index, key)
+    }
+
+    fn insert(&mut self, position: usize, symbol: usize, value: V) {
+        let (index, key) = self.entry(position, symbol);
+        *unsafe { self.array.get_unchecked_mut(index) } = Some(Bucket::new(key, value));
+    }
+
+    fn get(&self, position: usize, symbol: usize) -> Option<&V> {
+        let (index, key) = self.entry(position, symbol);
+        let mut result = None;
+        if let Some(bucket) = unsafe { self.array.get_unchecked(index) } {
+            if bucket.key == key {
+                result = Some(&bucket.value)
+            }
+        }
+        result
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script>
+
 #### Advantages
 
 # Bibliography
