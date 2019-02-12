@@ -150,7 +150,7 @@ fn main() {
 *****************************************
 
 #### Implementation
-The Elastic Sliding Window [#Kuramitsu2015] is implemented as an Hash Map without collision resolution. I replaced the modulo by a multiply and shift reduction [#FastRange].
+The Elastic Sliding Window [#Kuramitsu2015] is implemented as an Hash Map without collision resolution. I replaced the modulo by a multiply and shift reduction which is faster and fairer [#FastRange].
 
 <script type="preformatted">
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rust linenumbers
